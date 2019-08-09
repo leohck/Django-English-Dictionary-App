@@ -8,8 +8,11 @@ def home(request):
     meaningform = MeaniningForm(request.POST or None)
     context = {'meaningform': meaningform}
     if meaningform.is_valid():
-        print(meaningform.cleaned_data)
         response = meaningform.cleaned_data['word']
-        context['response'] = translate(response)
+        meaning = translate(response)
+        if type(meaning) == list:
+            context['response_list'] = meaning
+        else:
+            context['response'] = meaning
         return render(request, 'index.html', context=context)
     return render(request, 'index.html', context=context)

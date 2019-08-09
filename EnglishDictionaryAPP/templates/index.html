@@ -13,16 +13,18 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Search word</label>
                     {{ meaningform.word }}
-                    <small id="emailHelp" class="form-text text-muted">We'll return the meaning of the word for
-                        you</small>
+                    <small id="emailHelp" class="form-text text-muted">We'll return the meaning of the word for you</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Pesquisar</button>
             </form>
         </form>
     </div>
-    {% if response %}
-        {% for meaning in response %}
+    {% if response_list %}
+        {% for meaning in response_list %}
             {{ meaning }}<br>
         {% endfor %}
+    {% endif %}
+    {% if response %}
+        {{ response }}
     {% endif %}
 {% endblock %}
