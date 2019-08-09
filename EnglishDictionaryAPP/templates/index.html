@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    English App
+{% endblock %}
+
+{% block main %}
+    <div class="jumbotron">
+        <h1>English Dictionary</h1>
+        <form method="post">
+            {% csrf_token %}
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Search word</label>
+                    {{ meaningform.word }}
+                    <small id="emailHelp" class="form-text text-muted">We'll return the meaning of the word for
+                        you</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </form>
+        </form>
+    </div>
+    {% if response %}
+        {% for meaning in response %}
+            {{ meaning }}<br>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
